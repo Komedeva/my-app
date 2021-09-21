@@ -1,15 +1,34 @@
 class User {
-    name: string;
-    age: number;
+    private _name: string;
+    private _age: number;
     skills: string[]
 
-//
-// function foo(a: {name:string, age:number, skills:string[]}){
-// }
-// foo({name:'Katya', age:20, skills:['iwjsiqhsiaj','hxushauhszuq'] });
+    constructor(name: string, age: number) {
+        this._name = name;
+        this._age = age;
+    }
 
     greeting() {
-        return `hello my name is ${this.name}`
+        return `hello my name is ${this._name}`
+    }
+
+
+    get name(): string {
+        return this._name;
+    }
+
+    set name(value: string) {
+        this._name = value;
+    }
+
+    get age(): number {
+        return this._age;
+    }
+
+    set age(value: number) {
+        if (value > 0) {
+            this._age = value;
+        }
     }
 }
 
@@ -17,9 +36,9 @@ function foo(a: User) {
 
 }
 
-let user = new User();
-user.age = 23;
-user.name = 'Valya';
+let user = new User("Valya", 23);
+// user.age = 23;
+// user.name = 'Valya';
 foo(user);
 
 interface IUser {
@@ -53,11 +72,11 @@ let iUsers: IUser[] = [
     {name: 'swodk', age: 24, greeting: (a: string): string => {return 'hello';}}
 ]
 
-bar(new X())
+bar(new X());
 
 // ...................об,єктно-орієнтовне програмування............................
 function foobar(user:User){
     user.greeting();
 }
-let user1= new User();
+let user1= new User('Lala', 32);
 foobar(user1)
